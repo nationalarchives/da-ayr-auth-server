@@ -1,0 +1,49 @@
+version: '3.4'
+
+volumes:
+  keycloack_db_data:
+    driver: local
+  keycloack_data:
+    driver: local
+
+services:
+  keycloack-db:
+    image: postgres:13
+    volumes:
+      - keycloack_db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${KEYCLOACK_DB_NAME}
+      POSTGRES_USER: ${KEYCLOACK_DB_USER}
+      POSTGRES_PASSWORD: ${KEYCLOACK_DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - local
+  keycloak:
+    build:
+      context: .
+    env_file:
+      - .env
+    environment:
+      KC_HOSTNAME_STRICT: false
+      KEYCLOAK_HOST: http://localhost:8080
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloack-db
+      DB_USER: keycloack-user
+      DB_SCHEMA: public
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - keycloack-db
+    command: ["start", "--import-realm"]
+    networks:
+      - local
+    volumes:
+      - .keycloack_data:/opt/keycloak/data
+
+networks:
+  local:
