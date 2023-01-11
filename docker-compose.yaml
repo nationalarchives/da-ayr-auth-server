@@ -12,7 +12,7 @@ services:
     volumes:
       - keycloack_db_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: ${KC_DB_NAME}
+      POSTGRES_DB: ${KC_DB_URL_DATABASE}
       POSTGRES_USER: ${KC_DB_USERNAME}
       POSTGRES_PASSWORD: ${KC_DB_PASSWORD}
     ports:
