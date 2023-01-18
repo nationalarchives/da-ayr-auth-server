@@ -1,3 +1,5 @@
 /.env
 /ayr-realm.json
 /.keycloack_data/
+/venv/
+/ayr-realm-b64
