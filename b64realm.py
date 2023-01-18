@@ -24,7 +24,7 @@ def decode():
     with open("ayr-realm-b64") as realm_string_file:
         realm_string = realm_string_file.read()
     decoded_realm = base64.b64decode(realm_string).decode()
-    with open("ayr-realm.json") as realm_file:
+    with open("ayr-realm.json", "w") as realm_file:
         json.dumps(decoded_realm)
 
 
