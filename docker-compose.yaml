@@ -1,0 +1,37 @@
+version: '3.4'
+
+volumes:
+  keycloack_db_data:
+    driver: local
+  keycloack_data:
+    driver: local
+
+services:
+  keycloack-db:
+    image: postgres:13
+    volumes:
+      - keycloack_db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${KC_DB_URL_DATABASE}
+      POSTGRES_USER: ${KC_DB_USERNAME}
+      POSTGRES_PASSWORD: ${KC_DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - local
+  keycloak:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports: ["8443:8443", "8080:8080"] # 8443 prod, 8080 dev
+    depends_on:
+      - keycloack-db
+    command: ["start", "--import-realm", "--proxy", "edge"]
+    networks:
+      - local
+    volumes:
+      - .keycloack_data:/opt/keycloak/data
+
+networks:
+  local:
