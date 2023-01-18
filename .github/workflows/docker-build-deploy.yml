@@ -1,0 +1,8 @@
+name: Docker Build ECR Push
+on:
+  push:
+    branches: ['AYR-150']
+  workflow_dispatch:
+jobs:
+  docker-build-push-ecr:
+    uses: nationalarchives/da-ayr-github-actions/.github/workflows/docker-build-ecr-deploy.yml@dev
