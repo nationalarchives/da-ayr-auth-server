@@ -22,16 +22,12 @@ services:
   keycloak:
     build:
       context: .
-      args:
-        HTTPS_CERTIFICATE_FILE: ${HTTPS_CERTIFICATE_FILE}
-        HTTPS_CERTIFICATE_KEY_FILE: ${HTTPS_CERTIFICATE_KEY_FILE}
-        REALM_FILE: ${REALM_FILE}
     env_file:
       - .env
     ports: ["8443:8443", "8080:8080"] # 8443 prod, 8080 dev
     depends_on:
       - keycloack-db
-    command: ["start", "--import-realm"]
+    command: ["start", "--import-realm", "--proxy", "edge"]
     networks:
       - local
     volumes:
