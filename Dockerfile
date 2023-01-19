@@ -7,3 +7,6 @@ ARG REALM_FILE=ayr-realm.json
 WORKDIR $KEYCLOACK_PATH
 
 COPY ${REALM_FILE} data/import/
+
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
+CMD ["start-dev"]
