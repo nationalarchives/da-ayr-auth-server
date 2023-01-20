@@ -14,3 +14,4 @@ jobs:
       AWS_REGISTRIES: ${{ secrets.AWS_REGISTRIES }}
       AWS_ROLE: ${{ secrets.AWS_ROLE }}
       PASSPHRASE: ${{ secrets.PASSPHRASE }}
+      PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
