@@ -9,4 +9,4 @@ WORKDIR $KEYCLOACK_PATH
 COPY ${REALM_FILE} data/import/
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
-CMD ["start-dev", "--import-realm"]
+CMD ["start-dev"]
