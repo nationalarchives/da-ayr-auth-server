@@ -11,6 +11,6 @@ COPY ${REALM_FILE} ${KEYCLOACK_PATH}/data/import/
 RUN  ls | grep data
 RUN  ls data | grep import
 RUN  pwd
-
+RUN  cat ${KEYCLOACK_PATH}/data/import/ayr-realm.json
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
 CMD ["start", "--import-realm", "--proxy","edge"]
