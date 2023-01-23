@@ -9,7 +9,8 @@ RUN mkdir -p ./data/import/
 
 COPY ${REALM_FILE} ${KEYCLOACK_PATH}/data/import/
 RUN  ls | grep data
-RUN  ls | grep data/import/
+RUN  ls data | grep import
 RUN  pwd
+
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
 CMD ["start", "--import-realm", "--proxy","edge"]
