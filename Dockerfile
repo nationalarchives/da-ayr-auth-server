@@ -9,7 +9,5 @@ RUN mkdir -p ./data/import/
 
 COPY ${REALM_FILE} ${KEYCLOACK_PATH}/data/import/
 
-
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
 CMD ["start", "--import-realm", "--proxy","edge"]
-# CMD ["start", "--import-realm", "--proxy","edge", "--hostname-strict", "false"]

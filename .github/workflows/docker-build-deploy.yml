@@ -1,11 +1,11 @@
 name: Docker Build ECR Push
 on:
   push:
-    branches: ['AYR-150']
+    branches: ['dev']
   workflow_dispatch:
 jobs:
   docker-build-push-ecr:
-    uses: nationalarchives/da-ayr-github-actions/.github/workflows/docker-build-ecr-ecs-deploy-kc.yml@AYR-150
+    uses: nationalarchives/da-ayr-github-actions/.github/workflows/docker-build-ecr-ecs-deploy-kc.yml@dev
     secrets:
       AWS_ECR_REPO: ${{ secrets.AWS_ECR_REPO }}
       AWS_ECR_AND_ECS_ROLE_ARN: ${{ secrets.AWS_ECR_AND_ECS_ROLE_ARN }}
