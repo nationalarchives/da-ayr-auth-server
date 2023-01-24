@@ -5,7 +5,6 @@ ARG KEYCLOACK_PATH=/opt/keycloak
 ARG REALM_FILE=ayr-realm.json
 
 WORKDIR $KEYCLOACK_PATH
-RUN mkdir -p ./data/import/
 
 COPY ${REALM_FILE} ${KEYCLOACK_PATH}/data/import/
 
